@@ -1,0 +1,53 @@
+name: Convert Evernote to Markdown
+
+on:
+  push:
+    paths:
+      - 'input_sap/*.enex'
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Run conversion script
+      run: |
+        python scripts/convert_enex.py
+    
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changes=true" >> $GITHUB_OUTPUT
+        else
+          echo "changes=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changes == 'true'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add SAP/
+        git commit -m "🤖 Auto-convert: Evernote to Markdown [$(date +'%Y-%m-%d %H:%M:%S')]"
+        git push
+    
+    - name: Display completion message
+      run: |
+        echo "✅ Conversion completed successfully!"
+        if [ "${{ steps.check_changes.outputs.changes }}" == "true" ]; then
+          echo "📝 New markdown files have been committed"
+        else
+          echo "ℹ️ No changes detected"
+        fi
