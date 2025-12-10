@@ -14,7 +14,7 @@ from datetime import datetime
 import hashlib
 
 class ENEXConverter:
-    def __init__(self, input_dir="input_sap", output_dir="SAP"):
+    def __init__(self, input_dir="input_sap", output_dir="SAP_Materials"):
         self.input_dir = Path(input_dir)
         self.output_dir = Path(output_dir)
         self.errors = []
