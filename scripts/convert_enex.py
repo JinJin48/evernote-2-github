@@ -69,13 +69,13 @@ class ENEXConverter:
             
             # Validate tags
             if len(tags) > 2:
-                error_msg = f'ノート"{title}": タグが3つ以上あります。"SAP"タグを含め2つまでにして下さい。（現在のタグ: {", ".join(tags)}）'
+                error_msg = f'ノート"{title}": タグが3つ以上あります。"# SAP"タグを含め2つまでにして下さい。（現在のタグ: {", ".join(tags)}）'
                 print(f"⚠️  {error_msg}")
                 self.errors.append(error_msg)
                 return
             
             # Check if SAP tag exists
-            if "SAP" not in tags:
+            if "# SAP" not in tags:
                 print(f"⏭️  Skipping note '{title}': No SAP tag")
                 return
             
@@ -116,10 +116,10 @@ class ENEXConverter:
     
     def get_output_folder(self, tags):
         """Determine output folder based on tags"""
-        if len(tags) == 1:  # Only "SAP"
+        if len(tags) == 1:  # Only "# SAP"
             return self.output_dir
-        else:  # "SAP" + another tag
-            other_tag = [t for t in tags if t != "SAP"][0]
+        else:  # "# SAP" + another tag
+            other_tag = [t for t in tags if t != "# SAP"][0]
             return self.output_dir / other_tag
     
     def enml_to_markdown(self, enml_content, title):
