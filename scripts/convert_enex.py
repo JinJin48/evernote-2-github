@@ -69,7 +69,7 @@ class ENEXConverter:
             
             # Validate tags
             if len(tags) > 2:
-                error_msg = f'ノート"{title}": タグが3つ以上あります。"# SAP"タグを含め2つまでにして下さい。（現在のタグ: {", ".join(tags)}）'
+                error_msg = f'ノート"{title}": ノート上のタグが3つ以上あります。"# SAP"タグを含め2つまでにして下さい。（現在のタグ: {", ".join(tags)}）'
                 print(f"⚠️  {error_msg}")
                 self.errors.append(error_msg)
                 return
