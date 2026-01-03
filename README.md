@@ -137,7 +137,7 @@ python scripts/convert_enex.py
 | タグの組み合わせ | 保存先 |
 |-----------------|--------|
 | `["# SAP"]` | `SAP_Materials/` |
-| `["# SAP", "# S/4-QM"]` | `SAP_Materials/# S4-QM/` |
+| `["# SAP", "# S4-QM"]` | `SAP_Materials/# S4-QM/` |
 | `["# SAP", "# SAP-IBP"]` | `SAP_Materials/# SAP-IBP/` |
 | `["# SAP", "# SAP-BTP"]` | `SAP_Materials/# SAP-BTP/` |
 

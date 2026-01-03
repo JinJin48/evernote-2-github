@@ -103,7 +103,7 @@ cp /path/to/notes.enex input_sap/
 ### タグ命名規則
 
 - メインタグ: `# SAP`
-- サブタグ例: `# S/4-QM`, `# SAP-IBP`, `# SAP-BTP`
+- サブタグ例: `# S4-QM`, `# SAP-IBP`, `# SAP-BTP`
 
 ### 変換フロー
 
